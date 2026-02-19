@@ -8,12 +8,17 @@ while True:
     if auswahl == "1":
         typ = input("Typ (Einnahme/Ausgabe): ").strip()
 
-        if typ == "Einnahme":
-            betrag = float(input("Betrag: "))
+        try:
+            betrag = float(input("Betrag: ").strip().replace(",", "."))
+
+        except ValueError:
+            print("Ungültige Eingabe. Bitte geben Sie eine Zahl ein.")
+            continue
+
+        if typ.lower() == "einnahme":
             stand += betrag
 
-        elif typ == "Ausgabe":
-            betrag = float(input("Betrag: "))
+        elif typ.lower() == "ausgabe":
             stand -= betrag
 
         else:
